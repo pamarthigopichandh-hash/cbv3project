@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+
+<div class="container mt-5">
+    <a href="/create" class="btn btn-outline-primary btn-md"><i class="bi bi-person-fill-add">Create</i></a>
+    {% if student_list %}
+        <table class="table table-bordered  shadow table-hover text-center mt-2">
+            <thead>
+                <tr class="table-primary">
+                    <th>Student Id</th>
+                    <th> student Name</th>
+                    <th>Marks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for student in student_list %}
+                    <tr>
+                        <td>{{ student.Student_ID }}</td>
+                        <td>{{ student.Student_Name }}</td>
+                        <td>{{ student.Student_Marks }}</td>
+                        <td>
+                                <a href="{% url 'detail' student.pk %}" class="btn btn-outline-primary btn-sm">
+                                    <i class="bi bi-eye-fill">View</i>
+                                </a>
+
+                                <a href="{% url 'update' student.pk %}" class="btn btn-outline-success btn-sm">
+                                        <i class="bi bi-pencil-square">Edit</i>
+                                    </a>
+
+                                <a href="{% url 'delete' student.pk %}" class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-trash-fill">Delete</i>
+                                </a>
+                        </td>
+
+                    </tr>
+
+
+                {% endfor %}
+            </tbody>
+        </table>    
+    
+
+    {% else %}
+        <p class="h1 text-center text-danger"> Record  Not Found</p>
+
+    {% endif%}
+</div>
+{%endblock%}

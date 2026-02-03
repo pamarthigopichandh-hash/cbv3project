@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card w-25 shadow">
+        <div class="card-header">
+            <p class="h1 text-center text-danger " >ADD STUDENT</p>
+        </div>
+
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary">Add</button>
+
+               
+                <a href="{% url 'list' %}" class="btn btn-secondary ms-2">
+                    Back
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
